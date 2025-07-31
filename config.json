@@ -89,9 +89,9 @@
 
   "custom_category": [
     {
-      "name": "华语",
+      "name": "喜剧",
       "type": "movie",
-      "query": "华语"
+      "query": "喜剧"
     }
   ]
 }
