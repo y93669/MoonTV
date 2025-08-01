@@ -87,11 +87,5 @@
     }
   }
 
-  "custom_category": [
-    {
-      "name": "喜剧",
-      "type": "movie",
-      "query": "喜剧"
-    }
-  ]
+
 }
