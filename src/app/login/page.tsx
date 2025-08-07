@@ -230,7 +230,7 @@ function LoginPageClient() {
         </form>
       </div>
 
-      {/* 版本信息显示 */}
+      {/* 版本信息显示1 */}
       <VersionDisplay />
     </div>
   );
