@@ -180,6 +180,11 @@
       "query": "治愈"
     },
     {
+      "name": "其他",
+      "type": "movie",
+      "query": "色情"
+    },
+    {
       "name": "热门",
       "type": "tv",
       "query": "热门"
