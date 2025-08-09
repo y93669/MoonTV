@@ -1488,6 +1488,19 @@ function PlayPageClient() {
               handleNextEpisode();
             },
           },
+
+// 添加全屏按钮
+    {
+      position: 'right',
+      name: 'fullscreenWeb',
+      html: '<i class="art-icon art-icon-fullscreenWeb"></i>',
+      tooltip: '全屏',
+      style: {
+        display: 'block !important', // 确保始终显示
+      }
+    },
+
+          
         ],
       });
 
