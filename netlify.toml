@@ -1,0 +1,65 @@
+[[headers]]
+  for = "/*"  # 应用于所有路径
+  [headers.values]
+    # 明确忽略查询参数对缓存的影响
+    "Cache-Control" = "public, max-age=0, must-revalidate"
+    # 确保不根据查询参数改变缓存（移除或覆盖 Vary: query）
+    "Vary" = "Accept-Encoding"
+# 强制全站禁用缓存
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+    Pragma = "no-cache"
+    Expires = "0"
+
+# 特别处理搜索路径（根据实际URL调整）
+[[headers]]
+  for = "/search*"  # 匹配所有搜索路径
+  [headers.values]
+    Cache-Control = "no-store"  # 双重保障
+
+# 确保API请求不被缓存（如果搜索走API）
+[[headers]]
+  for = "/api/*"  # 根据实际API路径调整
+  [headers.values]
+    Cache-Control = "no-store"
+
+# 保留原有图片处理配置
+[[redirects]]
+from = "/_next/image"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
+
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
+
+# 覆盖所有环境的缓存设置
+[context]
+  [context.production]
+    [[context.production.headers]]
+      for = "/*"
+      [context.production.headers.values]
+        Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+        
+  [context.staging]
+    [[context.staging.headers]]
+      for = "/*"
+      [context.staging.headers.values]
+        Cache-Control = "no-store"
+        
+  [context.branch-deploy]
+    [[context.branch-deploy.headers]]
+      for = "/*"
+      [context.branch-deploy.headers.values]
+        Cache-Control = "no-store"
